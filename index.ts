@@ -41,7 +41,7 @@ function getCurrentTime() {
 
 // Function to render the table
 function renderTable(fullRefresh = false) {
-  if (fullRefresh) {
+  if (fullRefresh || !+process.env.ALWAYS_REFRESH!) {
     // Only clear the screen on full refresh
     term.clear();
     screenBuffer = new termkit.ScreenBuffer({ dst: term });
