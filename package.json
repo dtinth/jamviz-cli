@@ -1,0 +1,18 @@
+{
+  "name": "lounge-termviz",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/terminal-kit": "^2.5.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "eventsource": "^3.0.6",
+    "terminal-kit": "^3.1.2"
+  },
+  "scripts": {}
+}
