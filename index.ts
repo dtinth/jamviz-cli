@@ -52,29 +52,29 @@ function renderTable(fullRefresh = false) {
 
   // Table header with current time
   screenBuffer.put(
-    { x: 2, y: 0, attr: { color: "yellow", bold: true } },
-    "Jamulus stream"
+    { x: 2, y: 1, attr: { bgColor: "yellow", color: "black", bold: true } },
+    " Jamulus stream "
   );
-  screenBuffer.put({ x: 0, y: 2, attr: { color: "cyan", bold: true } }, "Name");
+  screenBuffer.put({ x: 2, y: 3, attr: { color: "cyan", bold: true } }, "Name");
   screenBuffer.put(
-    { x: 20, y: 2, attr: { color: "cyan", bold: true } },
+    { x: 22, y: 3, attr: { color: "cyan", bold: true } },
     "Level"
   );
   screenBuffer.put(
-    { x: 40, y: 2, attr: { color: "cyan", bold: true } },
+    { x: 42, y: 3, attr: { color: "cyan", bold: true } },
     "Instrument"
   );
-  screenBuffer.put({ x: 20, y: 0, attr: { color: "white" } }, getCurrentTime());
+  screenBuffer.put({ x: 22, y: 1, attr: { color: "white" } }, getCurrentTime());
 
   // Separator line
-  screenBuffer.put({ x: 0, y: 3, attr: { color: "cyan" } }, "─".repeat(60));
+  screenBuffer.put({ x: 2, y: 4, attr: { color: "cyan" } }, "─".repeat(60));
 
   // If no clients, show message
   if (!clients.length) {
-    screenBuffer.put({ x: 0, y: 5 }, "No users connected.");
+    screenBuffer.put({ x: 2, y: 5 }, "No users connected.");
   } else {
     // Display each client
-    let cy = 4;
+    let cy = 5;
     clients.forEach((client, index) => {
       const name = client.name.trim();
       const instrument = instrumentNames[client.instrument] || "Unknown";
@@ -88,19 +88,19 @@ function renderTable(fullRefresh = false) {
       const levelBar = "|".repeat(barLength);
 
       // Write client info to buffer
-      screenBuffer.put({ x: 0, y }, name);
+      screenBuffer.put({ x: 2, y }, name);
 
       // Color the level bar based on intensity
-      const barColor = level <= 3 ? "green" : level <= 6 ? "yellow" : "red";
-      screenBuffer.put({ x: 20, y, attr: { color: barColor } }, levelBar);
+      const barColor = level <= 6 ? "green" : level <= 7 ? "yellow" : "red";
+      screenBuffer.put({ x: 22, y, attr: { color: barColor } }, levelBar);
 
-      screenBuffer.put({ x: 40, y }, instrument);
+      screenBuffer.put({ x: 42, y, attr: { color: "gray" } }, instrument);
     });
   }
 
   // Draw the buffer to the terminal
   screenBuffer.draw({ delta: true });
-  term.moveTo(0, 0); // Move cursor to the top left
+  term.moveTo(19, 2); // Move cursor to the top left
 }
 
 // Initial render with full refresh
