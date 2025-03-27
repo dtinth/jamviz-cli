@@ -52,7 +52,11 @@ function renderTable(fullRefresh = false) {
 
   // Table header with current time
   screenBuffer.put(
-    { x: 2, y: 1, attr: { bgColor: "yellow", color: "black", bold: true } },
+    {
+      x: 2,
+      y: 1,
+      attr: { bgColor: "brightYellow", color: "black", bold: true },
+    },
     " Jamulus stream "
   );
   screenBuffer.put({ x: 2, y: 3, attr: { color: "cyan", bold: true } }, "Name");
